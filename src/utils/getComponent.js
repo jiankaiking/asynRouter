@@ -1,1 +1,1 @@
-export default (vuename) => () => import( `@/views/${vuename}.vue`)
+export default (vuename) => () => import(`@/views/${vuename}.vue`)

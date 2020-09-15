@@ -13,6 +13,7 @@ export const constantRouterMap = [
   { path: '/', redirect: '/home' },
   {
     path: '/404', name: '404',
+
     component: () => import('../components/404.vue')
   }
 ]

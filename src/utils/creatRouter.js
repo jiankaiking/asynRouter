@@ -1,4 +1,4 @@
-import { asynRouter } from '@/router'
+// import { asynRouter } from '@/router'
 
 export function creatRouter(data) {
   // console.log(data)
@@ -21,14 +21,20 @@ export function creatRouter(data) {
 
 function generateRoutes(children, item) {
   if (item.component) {
-    // console.log(item.component)
-    // () => import( `@/views/${vuename}.vue`)
-    // item.component = resolve => require([`@/views/${item.component}.vue`], resolve)
-    // console.log(item.component)
-    children.push(asynRouter[item.component])
-  } else if (item.children) {
-    item.children.forEach(e => {
-      generateRoutes(children, e)
+    item.component = getViews(item.component)
+    if (item.children && item.children.length > 0) {
+      item.children.forEach(e => {
+        generateRoutes(item.children, e)
+      })
+    }
+    children.push(item)
+  }
+}
+
+function getViews(path) {
+  return resolve => {
+    require.ensure([], (require) => {
+      resolve(require('@/views/' + path + '.vue'))
     })
   }
 }
