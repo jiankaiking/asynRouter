@@ -4,26 +4,53 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
+export const constantRouterMap = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "about" */ '../views/login.vue')
   },
+  { path: '/', redirect: '/home' },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/404', name: '404',
+    component: () => import('../components/404.vue')
   }
 ]
+export const asynRouter = {
+  'Home': {
+    path: '/home',
+    name: 'home',
+    component: Home
+  },
+  'One': {
+    path: '/one',
+    name: 'One',
+    component: () => import('../views/asynRouter/One.vue')
+  },
+  'Two': {
+    path: '/two',
+    name: 'Two',
+    component: () => import('../views/asynRouter/Two.vue')
+  },
+  'Three': {
+    path: '/three',
+    name: 'Three',
+    component: () => import('../views/asynRouter/Three.vue')
+  }
+}
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+const createRouter = () => new VueRouter({
+  // mode: 'history', // require service support
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
 })
+
+const router = createRouter()
+
+// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
 
 export default router
