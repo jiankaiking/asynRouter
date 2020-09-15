@@ -20,7 +20,14 @@ export const asynRouter = {
   'Home': {
     path: '/home',
     name: 'home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: '/home/index',
+        component: () => import('@/views/asynRouter/HomeChildren'),
+        name: 'HomeChildren'
+      }
+    ]
   },
   'One': {
     path: '/one',
