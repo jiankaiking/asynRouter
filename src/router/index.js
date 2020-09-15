@@ -20,27 +20,37 @@ export const asynRouter = {
   'Home': {
     path: '/home',
     name: 'home',
-    component: Home,
+    text: '首页',
+    icon: 'el-icon-s-goods',
+    component: Home
+  },
+  'One': {
+    path: '/one',
+    icon: 'el-icon-question',
+    text: '第一个',
+    name: 'One',
+    redirect: '/home/index',
+    component: () => import('../views/asynRouter/One.vue'),
     children: [
       {
         path: '/home/index',
-        component: () => import('@/views/asynRouter/HomeChildren'),
+        text: 'abc',
+        component: () => import('../views/asynRouter/HomeChildren'),
         name: 'HomeChildren'
       }
     ]
   },
-  'One': {
-    path: '/one',
-    name: 'One',
-    component: () => import('../views/asynRouter/One.vue')
-  },
   'Two': {
     path: '/two',
+    icon: 'el-icon-s-goods',
     name: 'Two',
+    text: '第二个',
     component: () => import('../views/asynRouter/Two.vue')
   },
   'Three': {
     path: '/three',
+    icon: 'el-icon-s-management',
+    text: '第三个',
     name: 'Three',
     component: () => import('../views/asynRouter/Three.vue')
   }

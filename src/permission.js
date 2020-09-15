@@ -1,6 +1,7 @@
 import router from '@/router'
 import service from '@/api'
 import { creatRouter } from '@/utils/creatRouter'
+import store from '@/store'
 let hasMenus = false
 router.beforeEach(async (to, from, next) => {
   const token = localStorage.getItem('token')
@@ -13,7 +14,8 @@ router.beforeEach(async (to, from, next) => {
       // console.log(creatRouter)
       const menuData = await service.get('/get/router/list')
       const routes = creatRouter(menuData.data)
-      console.log(menuData)
+      // console.log(menuData)
+      store.commit('setMenuItems', routes)
       router.addRoutes(routes)
       hasMenus = true
       next({ path: to.path || '/' })

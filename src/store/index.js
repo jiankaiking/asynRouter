@@ -9,6 +9,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setMenuItems(state, data) {
+      console.log(data)
       state.menuItems = [...data]
     }
   },

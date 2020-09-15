@@ -1,12 +1,12 @@
 import { asynRouter } from '@/router'
 
 export function creatRouter(data) {
-  console.log(data)
+  // console.log(data)
   const result = []
   const children = []
   result.push({
     path: '/',
-    component: () => import('../components/Index.vue'),
+    component: () => import('../views/dashboard.vue'),
     children
   })
   data.forEach(item => {
@@ -15,13 +15,13 @@ export function creatRouter(data) {
   result.push(
     { path: '*', redirect: '/404' }
   )
-  console.log(result)
+  // console.log(result)
   return result
 }
 
 function generateRoutes(children, item) {
   if (item.component) {
-    console.log(item.component)
+    // console.log(item.component)
     // () => import( `@/views/${vuename}.vue`)
     // item.component = resolve => require([`@/views/${item.component}.vue`], resolve)
     // console.log(item.component)
