@@ -3,6 +3,7 @@
       unique-opened
       :default-active="$route.path"
       router
+      :collapse="menuFold"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
@@ -11,6 +12,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import menuItem from '@/components/layout/menuItem'
 
 export default {
@@ -24,7 +26,8 @@ export default {
   computed: {
     menuList() {
       return this.$store.state.menuItems[0].children
-    }
+    },
+    ...mapState(['menuFold'])
   }
 }
 </script>

@@ -13,6 +13,10 @@
 body{
   height: 100%;
 }
+
+.el-menu{
+  border-right-width: 0 !important;
+}
 #app .el-container,.el-menu{
   min-height: 100%;
 }
