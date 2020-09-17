@@ -18,9 +18,15 @@
     </div>
     <div class="table-box" v-loading="loading">
       <el-table :data="tableData" border style="width: 100%">
-        <el-table-column prop="date" label="日期" width="180"></el-table-column>
-        <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-        <el-table-column prop="address" label="地址"></el-table-column>
+        <el-table-column prop="text" label="名称" width="180"></el-table-column>
+        <el-table-column prop="path" label="路径" width="180"></el-table-column>
+        <el-table-column prop="component" label="组件名称"></el-table-column>
+        <el-table-column prop="name" label="name值"></el-table-column>
+        <el-table-column prop="icon" label="icon">
+          <template slot-scope="scope">
+            <i :class="scope.row.icon"></i>
+          </template>
+        </el-table-column>
       </el-table>
       <el-pagination
           style="margin-top:20px;"
